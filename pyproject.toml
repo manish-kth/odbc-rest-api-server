@@ -1,0 +1,30 @@
+# Ruff configuration — linter + formatter.
+# Run locally:
+#   ruff check .
+#   ruff format .
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [".venv", "venv", "build", "dist"]
+
+[tool.ruff.lint]
+# E/W : pycodestyle errors and warnings
+# F   : pyflakes (undefined names, unused imports)
+# I   : isort (import ordering)
+# B   : flake8-bugbear (likely-bug patterns)
+select = ["E", "W", "F", "I", "B"]
+ignore = [
+  "E501",  # line too long — formatter handles code; docstring tables can exceed
+  "B008",  # function call in default arg — FastAPI uses Query()/Body()/Depends() this way
+]
+
+[tool.ruff.lint.per-file-ignores]
+# conftest must set env vars BEFORE importing the app — imports cannot be at top.
+"tests/conftest.py" = ["E402"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["api", "app"]
+
+[tool.ruff.format]
+quote-style = "double"

@@ -1,0 +1,14 @@
+# Development / test dependencies.
+# Install alongside requirements.txt:
+#   pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+
+# Tests
+pytest>=8.0.0
+httpx>=0.27.0
+
+# Linting + formatting (config lives in pyproject.toml)
+ruff>=0.7.0
+
+# Git hook runner for ruff + small repo hygiene checks
+pre-commit>=3.7.0
